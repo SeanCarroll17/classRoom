@@ -1,23 +1,24 @@
-function addPerson(name, age) {
+
+function addPerson(name, age, hair, skin) {
   this.name = name;
   this.age = age;
+  this.hair = hair;
+  this.skin = skin
 }
 
-let click = document.getElementById('add_Person');
 
-function newPerson(){
-  click.style.display = 'none'
-  let body = document.getElementsByTagName('body')[0]
-  let table = document.createElement('table');
-  let tableName = document.createElement('tr')
-  let tableAge = document.createElement('tr')
-  table.appendChild(tableName)
-  table.appendChild(tableAge)
-  body.appendChild(table)
-
+var people = document.getElementById('add_Person');
+function set(){
 
   let person = new addPerson('michael', 16);
-  tableName.innerText = person.name;
-  tableAge.innerText = person.age;
-}
-click.addEventListener('click', newPerson);
+  localStorage.setItem('name', person.name)
+  localStorage.setItem('age', person.age)
+
+};
+people.addEventListener('click', function(){
+  set()
+  let name = document.getElementById('name');
+  let age = document.getElementById('age')
+  name.innerText = localStorage.getItem('name');
+  age.innerText = localStorage.getItem('age');
+})
